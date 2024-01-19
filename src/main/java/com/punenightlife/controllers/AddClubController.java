@@ -55,7 +55,12 @@ public class AddClubController {
 			@RequestParam("tags") String tags,
 			@RequestParam("isGuestListAvailable") Boolean isGuestListAvailable,
 			@RequestParam("min_age") String min_age,
+			@RequestParam("offers") String offers,
+			@RequestParam("walkinCoverCharges") String walkinCoverCharges,
+			@RequestParam("guestlistCoverCharges") String guestlistCoverCharges,
+			@RequestParam("guestlistAvailableDays") String guestlistAvailableDays,
 			@RequestParam("entry_fees") int entry_fees, 
+			@RequestParam("note") int note, 
 			@RequestParam("imageData") MultipartFile imageData) {
 
 		try {
@@ -69,8 +74,14 @@ public class AddClubController {
 			clubInfo.setGuestListclosingTime(guestListclosingTime);
 			clubInfo.setGuestListAvailable(true);
 			clubInfo.setMin_age(min_age);
+			clubInfo.setOffers(offers);
 			clubInfo.setEntry_fees(entry_fees);
 			clubInfo.setImageData(imageData.getBytes());
+			clubInfo.setWalkinCoverCharges(walkinCoverCharges);
+			clubInfo.setGuestlistCoverCharges(guestlistCoverCharges);
+			clubInfo.setGuestlistAvailableDays(guestlistAvailableDays);
+			clubInfo.setNote(guestlistAvailableDays);
+			
 			addClubRepository.save(clubInfo);
 
 			return ResponseEntity.ok("Image uploaded successfully.");

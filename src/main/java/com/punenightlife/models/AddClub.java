@@ -45,7 +45,22 @@ public class AddClub {
 
 	@Column(name = "min_age")
 	String min_age;
+	
+	@Column(name = "offers")
+	String offers;
 
+	@Column(name = "walkinCoverCharges")
+	String walkinCoverCharges;
+	
+	@Column(name = "guestlistCoverCharges")
+	String guestlistCoverCharges;
+	
+	@Column(name = "guestlistAvailableDays")
+	String guestlistAvailableDays;
+	
+	@Column(name = "note")
+	private String note;
+	
 	@Column(name = "entry_fees")
 	private int entry_fees;
 
@@ -58,9 +73,12 @@ public class AddClub {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AddClub(int clubID, String clubName, String description, String location, String latitude,String longitude, 
-			String guestListclosingTime,String tags,
-			boolean isGuestListAvailable, String min_age, int entry_fees, byte[] imageData) {
+	 
+
+	public AddClub(int clubID, String clubName, String description, String location, String latitude, String longitude,
+			String guestListclosingTime, String tags, boolean isGuestListAvailable, String min_age, String offers,
+			String walkinCoverCharges, String guestlistCoverCharges, String guestlistAvailableDays, int entry_fees, String note,
+			byte[] imageData) {
 		super();
 		this.clubID = clubID;
 		this.clubName = clubName;
@@ -72,9 +90,16 @@ public class AddClub {
 		this.tags = tags;
 		this.isGuestListAvailable = isGuestListAvailable;
 		this.min_age = min_age;
+		this.offers = offers;
+		this.walkinCoverCharges = walkinCoverCharges;
+		this.guestlistCoverCharges = guestlistCoverCharges;
+		this.guestlistAvailableDays = guestlistAvailableDays;
 		this.entry_fees = entry_fees;
+		this.note = note;
 		this.imageData = imageData;
 	}
+
+
 
 	public int getClubID() {
 		return clubID;
@@ -163,6 +188,64 @@ public class AddClub {
 	public void setEntry_fees(int entry_fees) {
 		this.entry_fees = entry_fees;
 	}
+	
+	
+
+	public String getWalkinCoverCharges() {
+		return walkinCoverCharges;
+	}
+
+
+
+	public void setWalkinCoverCharges(String walkinCoverCharges) {
+		this.walkinCoverCharges = walkinCoverCharges;
+	}
+
+
+
+	public String getGuestlistCoverCharges() {
+		return guestlistCoverCharges;
+	}
+
+
+
+	public void setGuestlistCoverCharges(String guestlistCoverCharges) {
+		this.guestlistCoverCharges = guestlistCoverCharges;
+	}
+
+
+
+	public String getGuestlistAvailableDays() {
+		return guestlistAvailableDays;
+	}
+
+
+
+	public void setGuestlistAvailableDays(String guestlistAvailableDays) {
+		this.guestlistAvailableDays = guestlistAvailableDays;
+	}
+
+
+
+	public String getNote() {
+		return note;
+	}
+
+
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+
+
+	public String getOffers() {
+		return offers;
+	}
+
+	public void setOffers(String offers) {
+		this.offers = offers;
+	}
 
 	public byte[] getImageData() {
 		return imageData;
@@ -172,23 +255,18 @@ public class AddClub {
 		this.imageData = imageData;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "AddClub [clubID=" + clubID + ", clubName=" + clubName + ", description=" + description + ", location="
 				+ location + ", latitude=" + latitude + ", longitude=" + longitude + ", guestListclosingTime="
-				+ guestListclosingTime + ", isGuestListAvailable=" + isGuestListAvailable + ", min_age=" + min_age
-				+ ", entry_fees=" + entry_fees + ", imageData=" + Arrays.toString(imageData) + ", getClubID()="
-				+ getClubID() + ", getClubName()=" + getClubName() + ", getDescription()=" + getDescription()
-				+ ", getLocation()=" + getLocation() + ", getLatitude()=" + getLatitude() + ", getLongitude()="
-				+ getLongitude() + ", getGuestListclosingTime()=" + getGuestListclosingTime()
-				+ ", isGuestListAvailable()=" + isGuestListAvailable() + ", getMin_age()=" + getMin_age()
-				+ ", getEntry_fees()=" + getEntry_fees() + ", getImageData()=" + Arrays.toString(getImageData())
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+				+ guestListclosingTime + ", tags=" + tags + ", isGuestListAvailable=" + isGuestListAvailable
+				+ ", min_age=" + min_age + ", offers=" + offers + ", walkinCoverCharges=" + walkinCoverCharges
+				+ ", guestlistCoverCharges=" + guestlistCoverCharges + ", guestlistAvailableDays="
+				+ guestlistAvailableDays + ", note=" + note + ", entry_fees=" + entry_fees + ", imageData="
+				+ Arrays.toString(imageData) + "]";
 	}
-	
-
-	
 
 	 
 

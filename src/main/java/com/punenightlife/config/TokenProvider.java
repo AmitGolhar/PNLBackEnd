@@ -1,6 +1,8 @@
 package com.punenightlife.config;
 
 import io.jsonwebtoken.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -9,12 +11,18 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.punenightlife.dao.UserDao;
+import com.punenightlife.models.User;
+import com.punenightlife.models.UserDto;
+import com.punenightlife.service.impl.UserServiceImpl;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
 
 @Component
 public class TokenProvider implements Serializable {
@@ -27,6 +35,10 @@ public class TokenProvider implements Serializable {
 
     @Value("${jwt.authorities.key}")
     public String AUTHORITIES_KEY;
+    
+    @Autowired
+    private UserDao userDao;
+    
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -57,10 +69,17 @@ public class TokenProvider implements Serializable {
          String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
+System.out.println("authorities" + authorities);
+
+User user = userDao.findByUsername(authentication.getName());
 
         return Jwts.builder()
+        	 
+        		   
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
+                .claim(SIGNING_KEY, authorities)
+                .claim("UserDetails", user)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY*10000))
                 .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)

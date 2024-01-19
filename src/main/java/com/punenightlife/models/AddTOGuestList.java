@@ -15,6 +15,9 @@ public class AddTOGuestList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bookingID;
 
+	@Column(name = "clubID")
+	String clubID;
+	
 	@Column(name = "guest1Name")
 	String guest1Name;
 
@@ -27,52 +30,60 @@ public class AddTOGuestList {
 	@Column(name = "clubName")
 	String clubName;
 
-	@Column(name = "party_title")
-	private String party_title;
+	@Column(name = "email")
+	private String email;
 
-	@Column(name = "location")
-	private String location;
+	@Column(name = "latitude")
+	private String latitude;
 
-	@Column(name = "start_date")
-	private String start_date;
+	@Column(name = "longitude")
+	private String longitude;
+	
+	@Column(name = "date")
+	private String date;
 
 	@Column(name = "guestListClsoingTime")
 	private String guestListClsoingTime;
 
-	@Column(name = "entry_fees")
-	private int entry_fees;
+	@Column(name = "punchStatus")
+	private String punchStatus;
 
-	@Column(name = "category")
-	private String category;
-
-	@Column(name = "description")
-	private String description;
 
 	@Column(name = "userID")
 	int userID;
 
-	@Column(name = "partyID")
-	int partyID;
+	 
+	
+	
+	
+	public AddTOGuestList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	public AddTOGuestList(int bookingID, String guest1Name, String guest2Name, String bookingType, String clubName,
-			String party_title, String location, String start_date, String guestListClsoingTime, int entry_fees,
-			String category, String description, int userID, int partyID) {
+ 
+
+	public AddTOGuestList(int bookingID, String clubID, String guest1Name, String guest2Name, String bookingType,
+			String clubName, String email, String latitude, String longitude, String date, String guestListClsoingTime,
+			String punchStatus, int userID) {
 		super();
 		this.bookingID = bookingID;
+		this.clubID = clubID;
 		this.guest1Name = guest1Name;
 		this.guest2Name = guest2Name;
 		this.bookingType = bookingType;
 		this.clubName = clubName;
-		this.party_title = party_title;
-		this.location = location;
-		this.start_date = start_date;
+		this.email = email;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.date = date;
 		this.guestListClsoingTime = guestListClsoingTime;
-		this.entry_fees = entry_fees;
-		this.category = category;
-		this.description = description;
+		this.punchStatus = punchStatus;
 		this.userID = userID;
-		this.partyID = partyID;
+		 
 	}
+
+
 
 	public int getBookingID() {
 		return bookingID;
@@ -80,6 +91,14 @@ public class AddTOGuestList {
 
 	public void setBookingID(int bookingID) {
 		this.bookingID = bookingID;
+	}
+
+	public String getClubID() {
+		return clubID;
+	}
+
+	public void setClubID(String clubID) {
+		this.clubID = clubID;
 	}
 
 	public String getGuest1Name() {
@@ -114,28 +133,36 @@ public class AddTOGuestList {
 		this.clubName = clubName;
 	}
 
-	public String getParty_title() {
-		return party_title;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setParty_title(String party_title) {
-		this.party_title = party_title;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLatitude() {
+		return latitude;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 
-	public String getStart_date() {
-		return start_date;
+	public String getLongitude() {
+		return longitude;
 	}
 
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getGuestListClsoingTime() {
@@ -145,30 +172,20 @@ public class AddTOGuestList {
 	public void setGuestListClsoingTime(String guestListClsoingTime) {
 		this.guestListClsoingTime = guestListClsoingTime;
 	}
+	
+	
 
-	public int getEntry_fees() {
-		return entry_fees;
+	public String getBookingStatus() {
+		return punchStatus;
 	}
 
-	public void setEntry_fees(int entry_fees) {
-		this.entry_fees = entry_fees;
+
+
+	public void setBookingStatus(String punchStatus) {
+		this.punchStatus = punchStatus;
 	}
 
-	public String getCategory() {
-		return category;
-	}
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public int getUserID() {
 		return userID;
@@ -178,12 +195,7 @@ public class AddTOGuestList {
 		this.userID = userID;
 	}
 
-	public int getPartyID() {
-		return partyID;
-	}
-
-	public void setPartyID(int partyID) {
-		this.partyID = partyID;
-	}
+	 
+	 
 
 }
