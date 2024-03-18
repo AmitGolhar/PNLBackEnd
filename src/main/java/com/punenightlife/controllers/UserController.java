@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.punenightlife.config.TokenProvider;
+import com.punenightlife.dao.UserDao;
 import com.punenightlife.models.AuthToken;
 import com.punenightlife.models.LoginUser;
 import com.punenightlife.models.User;
@@ -36,6 +38,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    
+    @Autowired
+    private UserDao userDao;
+    
+    
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> generateToken(@RequestBody LoginUser loginUser) throws AuthenticationException {
@@ -52,11 +60,16 @@ public class UserController {
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public User saveUser(@RequestBody UserDto user){
-        return userService.save(user);
+    public String saveUser(@RequestBody UserDto user) throws UsernameNotFoundException {
+
+    	 User usercheck = userDao.findByUsername(user.getUsername());
+
+          if(usercheck == null){
+        	 return  userService.save(user);
+          } else {
+          	throw new UsernameNotFoundException("This Email/Username already exist. Please try another name.");
+          }
     }
-
-
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value="/adminping", method = RequestMethod.GET)

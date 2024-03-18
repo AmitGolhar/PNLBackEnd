@@ -140,4 +140,14 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username
+				+ ", password=" + password + ", email=" + email + ", phone=" + phone + ", dob=" + dob + ", gender="
+				+ gender + ", roles=" + roles + "]";
+	}
+    
+    
+    
 }

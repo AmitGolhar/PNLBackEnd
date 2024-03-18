@@ -17,7 +17,7 @@ public class AddTOGuestList {
 
 	@Column(name = "clubID")
 	String clubID;
-	
+
 	@Column(name = "guest1Name")
 	String guest1Name;
 
@@ -38,7 +38,7 @@ public class AddTOGuestList {
 
 	@Column(name = "longitude")
 	private String longitude;
-	
+
 	@Column(name = "date")
 	private String date;
 
@@ -48,24 +48,36 @@ public class AddTOGuestList {
 	@Column(name = "punchStatus")
 	private String punchStatus;
 
+	@Column(name = "bookingStatus")
+	private String bookingStatus;
 
 	@Column(name = "userID")
 	int userID;
 
-	 
-	
-	
+	@Column(name = "razorpay_order_id")
+	private String razorpay_order_id;
+
+	@Column(name = "razorpay_payment_id")
+	private String razorpay_payment_id;
+
+	@Column(name = "razorpay_signature")
+	private String razorpay_signature;
+
+	@Column(name = "status_code")
+	private String status_code;
+
+	@Column(name = "remember")
+	private String remember;
 	
 	public AddTOGuestList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
- 
-
 	public AddTOGuestList(int bookingID, String clubID, String guest1Name, String guest2Name, String bookingType,
 			String clubName, String email, String latitude, String longitude, String date, String guestListClsoingTime,
-			String punchStatus, int userID) {
+			String punchStatus, String bookingStatus, int userID, String razorpay_order_id, String razorpay_payment_id,
+			String razorpay_signature, String status_code) {
 		super();
 		this.bookingID = bookingID;
 		this.clubID = clubID;
@@ -79,11 +91,13 @@ public class AddTOGuestList {
 		this.date = date;
 		this.guestListClsoingTime = guestListClsoingTime;
 		this.punchStatus = punchStatus;
+		this.bookingStatus = bookingStatus;
 		this.userID = userID;
-		 
+		this.razorpay_order_id = razorpay_order_id;
+		this.razorpay_payment_id = razorpay_payment_id;
+		this.razorpay_signature = razorpay_signature;
+		this.status_code = status_code;
 	}
-
-
 
 	public int getBookingID() {
 		return bookingID;
@@ -172,20 +186,22 @@ public class AddTOGuestList {
 	public void setGuestListClsoingTime(String guestListClsoingTime) {
 		this.guestListClsoingTime = guestListClsoingTime;
 	}
-	
-	
 
-	public String getBookingStatus() {
+	public String getPunchStatus() {
 		return punchStatus;
 	}
 
-
-
-	public void setBookingStatus(String punchStatus) {
+	public void setPunchStatus(String punchStatus) {
 		this.punchStatus = punchStatus;
 	}
 
+	public String getBookingStatus() {
+		return bookingStatus;
+	}
 
+	public void setBookingStatus(String bookingStatus) {
+		this.bookingStatus = bookingStatus;
+	}
 
 	public int getUserID() {
 		return userID;
@@ -195,7 +211,36 @@ public class AddTOGuestList {
 		this.userID = userID;
 	}
 
-	 
-	 
+	public String getRazorpay_order_id() {
+		return razorpay_order_id;
+	}
+
+	public void setRazorpay_order_id(String razorpay_order_id) {
+		this.razorpay_order_id = razorpay_order_id;
+	}
+
+	public String getRazorpay_payment_id() {
+		return razorpay_payment_id;
+	}
+
+	public void setRazorpay_payment_id(String razorpay_payment_id) {
+		this.razorpay_payment_id = razorpay_payment_id;
+	}
+
+	public String getRazorpay_signature() {
+		return razorpay_signature;
+	}
+
+	public void setRazorpay_signature(String razorpay_signature) {
+		this.razorpay_signature = razorpay_signature;
+	}
+
+	public String getStatus_code() {
+		return status_code;
+	}
+
+	public void setStatus_code(String status_code) {
+		this.status_code = status_code;
+	}
 
 }

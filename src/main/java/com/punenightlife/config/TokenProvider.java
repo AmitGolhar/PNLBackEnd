@@ -1,6 +1,11 @@
 package com.punenightlife.config;
 
-import io.jsonwebtoken.*;
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,15 +18,12 @@ import org.springframework.stereotype.Component;
 
 import com.punenightlife.dao.UserDao;
 import com.punenightlife.models.User;
-import com.punenightlife.models.UserDto;
-import com.punenightlife.service.impl.UserServiceImpl;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 
 @Component
@@ -69,9 +71,9 @@ public class TokenProvider implements Serializable {
          String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
-System.out.println("authorities" + authorities);
 
-User user = userDao.findByUsername(authentication.getName());
+
+         User user = userDao.findByUsername(authentication.getName());
 
         return Jwts.builder()
         	 

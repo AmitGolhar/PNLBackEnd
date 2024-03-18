@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+//import com.punenightlife.controllers.UserAlreadyExistException;
 import com.punenightlife.dao.UserDao;
 import com.punenightlife.models.Role;
 import com.punenightlife.models.User;
@@ -40,6 +41,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
     }
 
+    
+    
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         user.getRoles().forEach(role -> {
@@ -60,21 +63,23 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User save(UserDto user) {
+    public String save(UserDto user) {
+    	
+    		User nUser = user.getUserFromDto();
+            nUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 
-        User nUser = user.getUserFromDto();
-        nUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-
-        Role role = roleService.findByName("GUEST");
-        Set<Role> roleSet = new HashSet<>();
-        roleSet.add(role);
-
-        if(nUser.getEmail().split("@")[1].equals("admin.com")){
-            role = roleService.findByName("ADMIN");
+            Role role = roleService.findByName("GUEST");
+            Set<Role> roleSet = new HashSet<>();
             roleSet.add(role);
-        }
 
-        nUser.setRoles(roleSet);
-        return userDao.save(nUser);
+            if(nUser.getEmail().split("@")[1].equals("pnl4u.com")){
+                role = roleService.findByName("ADMIN");
+                roleSet.add(role);
+            }
+
+            nUser.setRoles(roleSet);
+              userDao.save(nUser);
+            return "Registed successfully, Kindly login with username password" + nUser;
+
     }
 }

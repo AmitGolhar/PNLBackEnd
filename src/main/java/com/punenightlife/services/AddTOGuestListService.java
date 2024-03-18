@@ -2,6 +2,11 @@ package com.punenightlife.services;
 
 import java.util.List;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +28,12 @@ public class AddTOGuestListService {
 		return (List<AddTOGuestList>) addTOGuestListRepository.findAll();
 	}
 
-	public AddTOGuestList getBookingById(int id) {
-		return addTOGuestListRepository.findById(id).get();
+	public List<AddTOGuestList> findByUserID(int userID) {
+		 return addTOGuestListRepository.findByUserID(userID);
 	}
 
-	public void deleteBooking(int id) {
-		addTOGuestListRepository.deleteById(id);
+	public void deleteBooking(int bookingID) {
+		addTOGuestListRepository.deleteById(bookingID);
 	}
 
 
