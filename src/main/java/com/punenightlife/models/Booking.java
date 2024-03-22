@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "guest_list")
+@Table(name = "guest_list1")
 public class Booking {
 
 	@Id
@@ -45,6 +45,8 @@ public class Booking {
 
 	@Column(name = "razorpay_order_id")
 	private String razorpay_order_id;
+ 
+	
 
 	public int getBookingID() {
 		return bookingID;
@@ -141,6 +143,10 @@ public class Booking {
 	public void setRazorpay_order_id(String razorpay_order_id) {
 		this.razorpay_order_id = razorpay_order_id;
 	}
+	
+	
+
+ 
 
 	@Override
 	public String toString() {

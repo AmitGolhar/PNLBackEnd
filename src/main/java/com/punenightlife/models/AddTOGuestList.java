@@ -69,15 +69,20 @@ public class AddTOGuestList {
 	@Column(name = "remember")
 	private String remember;
 	
+	@Column(name = "offers")
+	private String offers;
+	
 	public AddTOGuestList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+ 
+
 	public AddTOGuestList(int bookingID, String clubID, String guest1Name, String guest2Name, String bookingType,
 			String clubName, String email, String latitude, String longitude, String date, String guestListClsoingTime,
 			String punchStatus, String bookingStatus, int userID, String razorpay_order_id, String razorpay_payment_id,
-			String razorpay_signature, String status_code) {
+			String razorpay_signature, String status_code, String remember, String offers) {
 		super();
 		this.bookingID = bookingID;
 		this.clubID = clubID;
@@ -97,7 +102,35 @@ public class AddTOGuestList {
 		this.razorpay_payment_id = razorpay_payment_id;
 		this.razorpay_signature = razorpay_signature;
 		this.status_code = status_code;
+		this.remember = remember;
+		this.offers = offers;
 	}
+
+
+
+	public String getRemember() {
+		return remember;
+	}
+
+
+
+	public void setRemember(String remember) {
+		this.remember = remember;
+	}
+
+
+
+	public String getOffers() {
+		return offers;
+	}
+
+
+
+	public void setOffers(String offers) {
+		this.offers = offers;
+	}
+
+
 
 	public int getBookingID() {
 		return bookingID;
