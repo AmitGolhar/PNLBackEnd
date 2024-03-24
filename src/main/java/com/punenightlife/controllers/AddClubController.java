@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.punenightlife.dao.AddClubRepository;
 import com.punenightlife.models.AddClub;
-import com.punenightlife.models.CreatePartyDao;
 import com.punenightlife.services.AddClubService;
 
 @CrossOrigin(origins = { "*" })
@@ -43,8 +42,9 @@ public class AddClubController {
 	 */
 
 	
-	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/add_club")
+	//@PreAuthorize("hasRole('ADMIN')")
+//	@PostMapping("/add_club")
+	@PostMapping(value = "/add_club")
 	public ResponseEntity<String> ResponseEntity(
 			@RequestParam("clubName") String clubName, 
 			@RequestParam("description") String description, 
@@ -60,7 +60,7 @@ public class AddClubController {
 			@RequestParam("guestlistCoverCharges") String guestlistCoverCharges,
 			@RequestParam("guestlistAvailableDays") String guestlistAvailableDays,
 			@RequestParam("entry_fees") int entry_fees, 
-			@RequestParam("note") int note, 
+			@RequestParam("note") String note, 
 			@RequestParam("imageData") MultipartFile imageData) {
 
 		try {
@@ -80,7 +80,7 @@ public class AddClubController {
 			clubInfo.setWalkinCoverCharges(walkinCoverCharges);
 			clubInfo.setGuestlistCoverCharges(guestlistCoverCharges);
 			clubInfo.setGuestlistAvailableDays(guestlistAvailableDays);
-			clubInfo.setNote(guestlistAvailableDays);
+			clubInfo.setNote(note);
 			
 			addClubRepository.save(clubInfo);
 
@@ -100,13 +100,13 @@ public class AddClubController {
 		return addClubService.getBookingById(id);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/delete_club_by_id/{id}")
 	public void deleteChapter(@PathVariable("id") int id) {
 		addClubService.deleteBooking(id);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update_club")
 	public void saveOrUpdate(AddClub chapter) {
 		addClubService.saveOrUpdate(chapter);

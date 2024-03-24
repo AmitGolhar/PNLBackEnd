@@ -59,10 +59,10 @@ public class AddClub {
 	String guestlistAvailableDays;
 	
 	@Column(name = "note")
-	private String note;
+	  String note;
 	
 	@Column(name = "entry_fees")
-	private int entry_fees;
+	  int entry_fees;
 
 	@Lob
 	@Column(name = "image_data")
