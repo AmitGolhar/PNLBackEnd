@@ -4,11 +4,8 @@ import lombok.Value;
 
 @Value
 public class ApiResponse {
-	private Boolean success;
-	private String message;
-	
-	
-	
+	 public Boolean success;
+	 public String message;
 	
 	
 	public ApiResponse(Boolean success, String message) {

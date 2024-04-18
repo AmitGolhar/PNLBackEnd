@@ -5,7 +5,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,13 +26,13 @@ public class ForgotasswordController {
         String response = service.forgotPass(email);
 
         if(!response.startsWith("Invalid")){
-            response= "http://localhost:4200/reset-password?token=" + response;
+            response= "https://pnl4u.in/#/reset-password?token=" + response;
         }
         
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(email);
         mailMessage.setSubject("Reset your PNL4U account password!");
-        mailMessage.setFrom("golharamit@gmail.com");
+        mailMessage.setFrom("punenightlifeofficials@gmail.com"); 
         mailMessage.setText("To reset your password, please click here : " + response);
 
         emailService.sendEmail(mailMessage);

@@ -26,43 +26,42 @@ public class AddClub {
 
 	@Column(name = "location")
 	String location;
-	
+
 	@Column(name = "latitude")
 	String latitude;
 
-	
 	@Column(name = "longitude")
 	String longitude;
-	
+
 	@Column(name = "guestListclosingTime")
 	String guestListclosingTime;
 
 	@Column(name = "tags")
 	String tags;
-	
+
 	@Column(name = "isGuestListAvailable")
-	boolean isGuestListAvailable = false;
+	String isGuestListAvailable;
 
 	@Column(name = "min_age")
 	String min_age;
-	
+
 	@Column(name = "offers")
 	String offers;
 
 	@Column(name = "walkinCoverCharges")
 	String walkinCoverCharges;
-	
+
 	@Column(name = "guestlistCoverCharges")
 	String guestlistCoverCharges;
-	
+
 	@Column(name = "guestlistAvailableDays")
 	String guestlistAvailableDays;
-	
+
 	@Column(name = "note")
-	  String note;
-	
+	String note;
+
 	@Column(name = "entry_fees")
-	  int entry_fees;
+	int entry_fees;
 
 	@Lob
 	@Column(name = "image_data")
@@ -73,12 +72,10 @@ public class AddClub {
 		// TODO Auto-generated constructor stub
 	}
 
-	 
-
 	public AddClub(int clubID, String clubName, String description, String location, String latitude, String longitude,
-			String guestListclosingTime, String tags, boolean isGuestListAvailable, String min_age, String offers,
-			String walkinCoverCharges, String guestlistCoverCharges, String guestlistAvailableDays, int entry_fees, String note,
-			byte[] imageData) {
+			String guestListclosingTime, String tags, String isGuestListAvailable, String min_age, String offers,
+			String walkinCoverCharges, String guestlistCoverCharges, String guestlistAvailableDays, String note,
+			int entry_fees, byte[] imageData) {
 		super();
 		this.clubID = clubID;
 		this.clubName = clubName;
@@ -94,12 +91,10 @@ public class AddClub {
 		this.walkinCoverCharges = walkinCoverCharges;
 		this.guestlistCoverCharges = guestlistCoverCharges;
 		this.guestlistAvailableDays = guestlistAvailableDays;
-		this.entry_fees = entry_fees;
 		this.note = note;
+		this.entry_fees = entry_fees;
 		this.imageData = imageData;
 	}
-
-
 
 	public int getClubID() {
 		return clubID;
@@ -165,11 +160,11 @@ public class AddClub {
 		this.tags = tags;
 	}
 
-	public boolean isGuestListAvailable() {
+	public String getIsGuestListAvailable() {
 		return isGuestListAvailable;
 	}
 
-	public void setGuestListAvailable(boolean isGuestListAvailable) {
+	public void setIsGuestListAvailable(String isGuestListAvailable) {
 		this.isGuestListAvailable = isGuestListAvailable;
 	}
 
@@ -188,56 +183,38 @@ public class AddClub {
 	public void setEntry_fees(int entry_fees) {
 		this.entry_fees = entry_fees;
 	}
-	
-	
 
 	public String getWalkinCoverCharges() {
 		return walkinCoverCharges;
 	}
 
-
-
 	public void setWalkinCoverCharges(String walkinCoverCharges) {
 		this.walkinCoverCharges = walkinCoverCharges;
 	}
-
-
 
 	public String getGuestlistCoverCharges() {
 		return guestlistCoverCharges;
 	}
 
-
-
 	public void setGuestlistCoverCharges(String guestlistCoverCharges) {
 		this.guestlistCoverCharges = guestlistCoverCharges;
 	}
-
-
 
 	public String getGuestlistAvailableDays() {
 		return guestlistAvailableDays;
 	}
 
-
-
 	public void setGuestlistAvailableDays(String guestlistAvailableDays) {
 		this.guestlistAvailableDays = guestlistAvailableDays;
 	}
-
-
 
 	public String getNote() {
 		return note;
 	}
 
-
-
 	public void setNote(String note) {
 		this.note = note;
 	}
-
-
 
 	public String getOffers() {
 		return offers;
@@ -255,8 +232,6 @@ public class AddClub {
 		this.imageData = imageData;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "AddClub [clubID=" + clubID + ", clubName=" + clubName + ", description=" + description + ", location="
@@ -267,7 +242,5 @@ public class AddClub {
 				+ guestlistAvailableDays + ", note=" + note + ", entry_fees=" + entry_fees + ", imageData="
 				+ Arrays.toString(imageData) + "]";
 	}
-
-	 
 
 }

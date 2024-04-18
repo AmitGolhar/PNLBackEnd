@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,12 +33,6 @@ public class AddClubController {
 	AddClubRepository addClubRepository;
 	
 
-	/*
-	 * @PostMapping("/add_club") public void CreateParty(@RequestBody AddClub
-	 * createPartyDao) {
-	 * 
-	 * addClubService.addTOGuestList(createPartyDao); }
-	 */
 
 	
 	//@PreAuthorize("hasRole('ADMIN')")
@@ -53,7 +46,7 @@ public class AddClubController {
 			@RequestParam("longitude") String longitude,
 			@RequestParam("guestListclosingTime") String guestListclosingTime,
 			@RequestParam("tags") String tags,
-			@RequestParam("isGuestListAvailable") Boolean isGuestListAvailable,
+			@RequestParam("isGuestListAvailable") String isGuestListAvailable,
 			@RequestParam("min_age") String min_age,
 			@RequestParam("offers") String offers,
 			@RequestParam("walkinCoverCharges") String walkinCoverCharges,
@@ -72,7 +65,7 @@ public class AddClubController {
 			clubInfo.setLongitude(longitude);
 			clubInfo.setTags(tags);
 			clubInfo.setGuestListclosingTime(guestListclosingTime);
-			clubInfo.setGuestListAvailable(true);
+			clubInfo.setIsGuestListAvailable("True");
 			clubInfo.setMin_age(min_age);
 			clubInfo.setOffers(offers);
 			clubInfo.setEntry_fees(entry_fees);
@@ -107,9 +100,63 @@ public class AddClubController {
 	}
 
 	//@PreAuthorize("hasRole('ADMIN')")
+	
+	/*
+	 * @PutMapping("/update_club") public void saveOrUpdate(@RequestBody AddClub
+	 * chapter) { System.out.println("Update Club DTO" + chapter);
+	 * addClubService.saveOrUpdate(chapter); }
+	 */
+	
 	@PutMapping("/update_club")
-	public void saveOrUpdate(AddClub chapter) {
-		addClubService.saveOrUpdate(chapter);
+	public ResponseEntity<String> saveOrUpdate(
+			@RequestParam("clubID") int clubID,
+			@RequestParam("clubName") String clubName, 
+			@RequestParam("description") String description, 
+			@RequestParam("location") String location,
+			@RequestParam("latitude") String latitude,
+			@RequestParam("longitude") String longitude,
+			@RequestParam("guestListclosingTime") String guestListclosingTime,
+			@RequestParam("tags") String tags,
+			@RequestParam("isGuestListAvailable") String isGuestListAvailable,
+			@RequestParam("min_age") String min_age,
+			@RequestParam("offers") String offers,
+			@RequestParam("walkinCoverCharges") String walkinCoverCharges,
+			@RequestParam("guestlistCoverCharges") String guestlistCoverCharges,
+			@RequestParam("guestlistAvailableDays") String guestlistAvailableDays,
+			@RequestParam("entry_fees") int entry_fees, 
+			@RequestParam("note") String note, 
+			@RequestParam(value = "imageData", required = 
+false ) MultipartFile imageData ) {
+
+		try {
+			AddClub clubInfo = new AddClub();
+			clubInfo.setClubID(clubID);
+			clubInfo.setClubName(clubName);
+			clubInfo.setDescription(description);
+			clubInfo.setLocation(location);
+			clubInfo.setLatitude(latitude);
+			clubInfo.setLongitude(longitude);
+			clubInfo.setTags(tags);
+			clubInfo.setGuestListclosingTime(guestListclosingTime);
+			clubInfo.setIsGuestListAvailable(isGuestListAvailable);
+			clubInfo.setMin_age(min_age);
+			clubInfo.setOffers(offers);
+			clubInfo.setEntry_fees(entry_fees);
+			if(imageData != null ) {
+				clubInfo.setImageData(imageData.getBytes());
+			}
+			clubInfo.setWalkinCoverCharges(walkinCoverCharges);
+			clubInfo.setGuestlistCoverCharges(guestlistCoverCharges);
+			clubInfo.setGuestlistAvailableDays(guestlistAvailableDays);
+			clubInfo.setNote(note);
+			
+			addClubService.saveOrUpdate(clubInfo);
+
+			return ResponseEntity.ok("updated successfully.");
+		} catch (IOException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Image upload failed.");
+		}
+
 	}
 
 }
